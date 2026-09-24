@@ -50,3 +50,8 @@ You may share and adapt it for noncommercial purposes with attribution, a licens
 > Parametric Polaroid by Burner Tools — https://github.com/kellygold/polaroid-parametric — CC BY-NC-SA 4.0. Changes: describe your modifications, if any.
 
 Polaroid names and marks belong to their respective owners. This is an independent project with no affiliation or endorsement.
+
+## Support
+
+If this project is useful to you, you can [support Burner Tools](https://buymeacoffee.com/burnertools)
+on Buy Me a Coffee.
