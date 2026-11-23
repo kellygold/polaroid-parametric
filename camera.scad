@@ -230,8 +230,9 @@ module by_piece(){
   else intersection(){ children(); translate([0, chop_y + (piece=="face" ? -300 : 300), 0]) cube([900,600,900], center=true); }
 }
 module placed(){
-  if(piece=="face") translate([0,0,chop_y]) rotate([-90,0,0]) by_piece() children();
-  else              by_piece() children();
+  if(piece=="face")      translate([0,0,chop_y])  rotate([-90,0,0]) by_piece() children();
+  else if(piece=="body") translate([0,0,-chop_y]) rotate([90,0,0])  by_piece() children();
+  else                   by_piece() children();
 }
 
 placed() scale([scl, scl*sy, scl]){
