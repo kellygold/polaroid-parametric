@@ -21,8 +21,39 @@ Open `camera.scad` in OpenSCAD. All geometry is defined in the source; it has no
 | `back_sq` | Rear-body depth multiplier; `1` preserves master proportions |
 | `top_slot` | Optional top display-card slot |
 | `part` | Select `all`, `black`, `cream`, `red`, `white`, `rainbow`, or `card` |
-| `piece` | Select `all`, `face`, or `body` |
+| `piece` | Select `all`, `face`, or `body`; `face` and `body` are cut at `chop_y` and laid in their print orientation |
 | `rb_band` | `-1` for all rainbow bands, or `0` through `5` |
+
+## Print it
+
+Two ready-to-print Bambu Studio projects are in [`print/`](print/). Each has four plates, already cut, oriented and colour-assigned, so there is nothing to cut or arrange in the slicer.
+
+| File | Size | Body width |
+|---|---|---|
+| [`polaroid_full_size_4_plates.3mf`](print/polaroid_full_size_4_plates.3mf) | True scale | 109 mm |
+| [`polaroid_desk_size_4_plates.3mf`](print/polaroid_desk_size_4_plates.3mf) | Desk ornament: 76% scale, shortened back, card slot on top | 83 mm |
+
+| Plate | Piece | Filaments | Full size | Desk size |
+|---|---|---|---|---|
+| 1 | Face, lens up | black, cream, red, white | 13 h 42 min, 301 g | 8 h 9 min, 170 g |
+| 2 | Body, cut face down | black | 6 h 3 min, 178 g | 2 h 3 min, 58 g |
+| 3 | Rainbow, left half, on edge | magenta, red, orange | 13 min | 12 min |
+| 4 | Rainbow, right half, on edge | yellow, green, blue | 13 min | 12 min |
+
+Times and weights are Bambu Studio estimates for a P2S with a 0.4 mm nozzle, 0.2 mm layers, 2 walls, 15% infill and no supports. No plate uses more than four filaments, so each one prints from a single AMS.
+
+1. Open the project and print the plates in any order. Skip plates 3 and 4 if you do not want the rainbow.
+2. Glue the face to the body. The two cut faces are flat and the same outline; line up the top and side edges.
+3. Glue the two rainbow halves side by side on the front, centred below the lens: magenta on the far left, blue on the far right. The strip starts on the front door, runs up the slope and ends at the lens ring. Each half has one end cut to a curve; that end goes at the top, against the lens ring.
+
+The rainbow halves print standing on edge, so each stripe is a thin wall and the colour changes only twice per half. A brim helps them stay put.
+
+To rebuild the projects after changing `camera.scad`, install `numpy` and `trimesh` and run:
+
+```sh
+python3 build_plates.py full
+python3 build_plates.py desk
+```
 
 ## Render and export
 
@@ -35,7 +66,7 @@ python3 export.py stl
 
 Set `OPENSCAD` to your executable path if it is not on PATH or in the standard macOS application location. Outputs go into `exports/`.
 
-The included STL is a combined geometry export with the preview card disabled. It does not preserve filament assignments. Use the MakerWorld profile for the painted print workflow, and inspect the sliced result before printing at a different scale or with different settings.
+The included STL is a combined geometry export with the preview card disabled. It does not preserve filament assignments. Use the projects in `print/` or the MakerWorld profile for the painted print workflow, and inspect the sliced result before printing at a different scale or with different settings.
 
 The source has been rendered and exported with OpenSCAD's Manifold backend without geometry errors. The photo shows an actual print; it does not establish printability of every parameter combination.
 
